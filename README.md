@@ -1,5 +1,5 @@
-Dotfiler: misc helpers
-======================
+Dotfiler: Python Development Environment
+========================================
 
 This repository contains dotfiles and it's purpose to be used as
 a repository for [dotfiler][].
