@@ -1,0 +1,3 @@
+function pip-versions {
+    pip list --local | awk '{print $1}' | xargs pip show | grep -v -e '^Location' -e '^Requires: $'
+}

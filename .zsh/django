@@ -1,0 +1,55 @@
+# A bunch of helpers to run Django's most common commands
+# it also understands if there are django-extensions is installed.
+
+run() {
+    if [ -e ./run ]; then
+        ./run
+    else
+        # Run django application server
+        # from ./bin directory
+        DJANGO=bin/django
+        DJANGO=$(test -e $DJANGO && echo $DJANGO || echo ./manage.py)
+
+        if [ -e $DJANGO ]; then
+            if $DJANGO help 2>&1 | grep -q runserver_plus; then
+                $DJANGO runserver_plus 0.0.0.0:8000
+            else
+                $DJANGO runserver 0.0.0.0:8000
+            fi
+        fi
+    fi
+}
+
+shell() {
+    if [ -e ./shell ]; then
+        ./shell
+    else
+        # Run django shell
+        # from ./bin directory
+        DJANGO=bin/django
+        DJANGO=$(test -e $DJANGO && echo $DJANGO || echo ./manage.py)
+
+        if [ -e $DJANGO ]; then
+            if $DJANGO help 2>&1 | grep -q shell_plus; then
+                $DJANGO shell_plus
+            else
+                $DJANGO shell
+            fi
+        fi
+    fi
+}
+
+dbshell() {
+    if [ -e ./dbshell ]; then
+        ./dbshell
+    else
+        # Run django shell
+        # from ./bin directory
+        DJANGO=bin/django
+        DJANGO=$(test -e $DJANGO && echo $DJANGO || echo ./manage.py)
+
+        if [ -e $DJANGO ]; then
+            $DJANGO dbshell
+        fi
+    fi
+}

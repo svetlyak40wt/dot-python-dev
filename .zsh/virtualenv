@@ -1,0 +1,32 @@
+# a function to quickly activate local virtualenv, created as `virtualenv env`
+# also, env could be created separately, in the $HOME/env/$PROJECT dir
+
+function activate()
+{
+    PROJECT=$1
+    if [ "$PROJECT" = "" ]; then
+        if [ -e 'env' ]; then
+            PROJECT='local'
+        else
+            PROJECT=`basename $PWD`
+        fi
+    fi
+    if [ "$PROJECT" = 'local' ]; then
+        ACTIVATION_SCRIPTS='env/bin/activate'
+    else
+        ACTIVATION_SCRIPTS="$PROJECT/bin/activate $HOME/env/$PROJECT/bin/activate"
+    fi
+
+    for SCRIPT in `echo $ACTIVATION_SCRIPTS`
+    do
+        if test -e "$SCRIPT"; then
+            source "$SCRIPT"
+            return 0
+        fi
+    done
+
+    echo "Virtual environment '$PROJECT' does not exists."
+    return 1
+}
+
+
