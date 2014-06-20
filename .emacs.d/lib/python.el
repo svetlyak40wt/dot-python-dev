@@ -1,3 +1,12 @@
+;; для использования elpy, надо установить python модули:
+;; pip install elpy jedi rope
+
+;; elpy-enable должен быть запущен до загрузки python кода,
+;; поэтому делаем это не в хуке, а прямо тут
+(use-packages '(elpy))
+(elpy-enable)
+(setq elpy-rpc-backend "jedi")
+
 (eval-after-load 'python
   `(progn
      (defun python-config ()
@@ -17,24 +26,19 @@
        (local-set-key (kbd "RET") 'newline-and-indent)
        ;; Nothing on this shortcut
        (local-set-key (kbd "C-c n") 'flymake-goto-next-error)
+       (local-set-key (kbd "C-c i") 'iedit-mode)
   
-       ;; activate snippets
-       (yas-minor-mode)
-
-;       (setq jedi:setup-keys t)
-
-       ;; включаем простой автокомплит
-       (require 'auto-complete)
-       (auto-complete-mode)
-
        ;; подсвечиваем брекпоинты, чтобы не забыть их удалить
+       ;; это включает hi-lock minor mode
        (highlight-lines-matching-regexp "pdb\.set_trace" "hi-blue")
-;       (jedi:setup)
 
        ;; Turn on automatic syntax checker
        ;; https://github.com/purcell/flymake-python-pyflakes
        (require 'flymake-python-pyflakes)
-       (flymake-python-pyflakes-load))
+       (flymake-python-pyflakes-load)
+       (flymake-cursor-mode))
 
      
      (add-hook 'python-mode-hook 'python-config)))
+
+
