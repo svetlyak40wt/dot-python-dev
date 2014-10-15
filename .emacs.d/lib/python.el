@@ -27,6 +27,9 @@
        ;; Nothing on this shortcut
        (local-set-key (kbd "C-c n") 'flymake-goto-next-error)
        (local-set-key (kbd "C-c i") 'iedit-mode)
+
+       ;; To delete trailing whitespaces on save
+       (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)
   
        ;; подсвечиваем брекпоинты, чтобы не забыть их удалить
        ;; это включает hi-lock minor mode
