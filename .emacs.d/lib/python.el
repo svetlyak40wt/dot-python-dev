@@ -1,6 +1,11 @@
 ;; для использования elpy, надо установить python модули:
 ;; pip install elpy jedi rope
 
+(require 'package)
+(add-to-list 'package-archives
+             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+
+
 ;; elpy-enable должен быть запущен до загрузки python кода,
 ;; поэтому делаем это не в хуке, а прямо тут
 (use-packages '(elpy))
