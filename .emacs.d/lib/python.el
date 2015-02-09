@@ -32,6 +32,7 @@
        ;; Nothing on this shortcut
        (local-set-key (kbd "C-c n") 'flymake-goto-next-error)
        (local-set-key (kbd "C-c i") 'iedit-mode)
+       (local-set-key (kbd "C-c g") 'magit-status)
 
        ;; To delete trailing whitespaces on save
        (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)
