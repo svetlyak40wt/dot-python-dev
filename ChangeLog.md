@@ -1,3 +1,10 @@
+0.2.0
+=====
+
+* Use `column-enforce-mode` to highlight long lines.
+* Highlight not only `pdb.set_trace()`, but any line
+  containing `.set_trace()`.
+
 0.1.0
 =====
 

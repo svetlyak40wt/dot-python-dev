@@ -25,6 +25,9 @@
                        flymake-cursor
                        ;; выделение окружающего контекста по C-c =
                        expand-region
+                       ;; выделение строк, которые выбиваются за
+                       ;; границу в 80 символов
+                       column-enforce-mode
                       ))
 
        ;; To make right indent after if/for/etc tokens
@@ -39,7 +42,7 @@
   
        ;; подсвечиваем брекпоинты, чтобы не забыть их удалить
        ;; это включает hi-lock minor mode
-       (highlight-lines-matching-regexp "pdb\.set_trace" "hi-blue")
+       (highlight-lines-matching-regexp "\.set_trace" "hi-blue")
 
        ;; Turn on automatic syntax checker
        ;; https://github.com/purcell/flymake-python-pyflakes
@@ -47,6 +50,7 @@
        (flymake-python-pyflakes-load)
        (flymake-cursor-mode))
 
+       (column-enforce-mode)
      
      (add-hook 'python-mode-hook 'python-config)))
 
