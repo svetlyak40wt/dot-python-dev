@@ -48,9 +48,8 @@
        ;; https://github.com/purcell/flymake-python-pyflakes
        (require 'flymake-python-pyflakes)
        (flymake-python-pyflakes-load)
-       (flymake-cursor-mode))
-
-       (column-enforce-mode)
+       (flymake-cursor-mode)
+       (column-enforce-mode))
      
      (add-hook 'python-mode-hook 'python-config)))
 
