@@ -1,3 +1,8 @@
+0.2.2 (2015-04-23)
+==================
+
+* Fixed loading of emacs config. It was broken because flymake-cursor-mode function is absent in flymake-cursor.el.
+
 0.2.1 (2015-02-11)
 ==================
 
