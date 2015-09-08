@@ -1,3 +1,9 @@
+0.3.0 (2015-09-07)
+==================
+
+* Don't activate yasnippets on the python level. Now it
+  is activated by emacs main config directly.
+
 0.2.2 (2015-04-23)
 ==================
 

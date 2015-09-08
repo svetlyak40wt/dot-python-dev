@@ -18,8 +18,6 @@
        (use-packages '(;; дополнение символов, которые используются
                        ;; в текущем файле
                        auto-complete
-                       ;; использование сниппетов
-                       yasnippet
                        ;; подсказки неправильного синтаксиса и импортов
                        flymake-python-pyflakes
                        flymake-cursor
