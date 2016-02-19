@@ -18,8 +18,6 @@
        (use-packages '(;; дополнение символов, которые используются
                        ;; в текущем файле
                        auto-complete
-                       ;; использование сниппетов
-                       yasnippet
                        ;; подсказки неправильного синтаксиса и импортов
                        flymake-python-pyflakes
                        flymake-cursor
@@ -48,7 +46,6 @@
        ;; https://github.com/purcell/flymake-python-pyflakes
        (require 'flymake-python-pyflakes)
        (flymake-python-pyflakes-load)
-       (flymake-cursor-mode)
        (column-enforce-mode))
      
      (add-hook 'python-mode-hook 'python-config)))

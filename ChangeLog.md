@@ -1,9 +1,19 @@
-## 0.3.0 (2015-02-19)
+## 0.4.0 (2015-02-19)
 
 * Snippets for pdb and pudb where fixed to override similar from elpy.
 * Change pudb's theme to classic.
 
+## 0.3.0 (2015-09-07)
+
+* Don't activate yasnippets on the python level. Now it
+  is activated by emacs main config directly.
+
+## 0.2.2 (2015-04-23)
+
+* Fixed loading of emacs config. It was broken because flymake-cursor-mode function is absent in flymake-cursor.el.
+
 ## 0.2.1 (2015-02-11)
+
 
 * Fixed `column-enforce-mode` setup.
 
