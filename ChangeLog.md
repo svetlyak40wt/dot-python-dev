@@ -1,3 +1,7 @@
+## 0.5.0 (2016-04-01)
+
+* Removed local key 'C-c g' for git status. Now this settings in the main config with bindings in another repository.
+
 ## 0.4.0 (2015-02-19)
 
 * Snippets for pdb and pudb where fixed to override similar from elpy.
