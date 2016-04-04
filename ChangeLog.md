@@ -1,3 +1,7 @@
+## 0.6.0 (2016-04-04)
+
+* Added snippet to make a Trepan debugger set_trace.
+
 ## 0.5.0 (2016-04-01)
 
 * Removed local key 'C-c g' for git status. Now this settings in the main config with bindings in another repository.
