@@ -12,6 +12,23 @@
 (elpy-enable)
 (setq elpy-rpc-backend "jedi")
 
+ 
+(defun reformat-test-name (&optional arg)
+  "Эта функция превращает строку с описанием теста типа
+test_set_signature (test.test_settings.TestSettings)
+в
+test.test_settings:TestSettings.test_set_signature
+"
+  (interactive "p")
+  (kmacro-exec-ring-item
+   (quote ([67108896 19 32 return left 24 11 5 backspace 46 25 18 92 46 18 return 4 58 1 4 4 14] 0 "%d"))
+   arg))
+
+
+;; (when (executable-find "ipython")
+;;   (setq python-shell-interpreter "ipython")
+;;   (setq python-shell-interpreter-args "--pylab"))
+
 (eval-after-load 'python
   `(progn
      (defun python-config ()
