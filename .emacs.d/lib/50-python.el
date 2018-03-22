@@ -2,8 +2,10 @@
 ;; pip install elpy jedi rope
 
 (require 'package)
-(add-to-list 'package-archives
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+
+;; Начиная с версии 1.18.0 elpy стали раздавать через MELPA stable.
+;; (add-to-list 'package-archives
+;;              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 
 
 ;; elpy-enable должен быть запущен до загрузки python кода,
@@ -50,6 +52,11 @@ test.test_settings:TestSettings.test_set_signature
        ;; Nothing on this shortcut
        (local-set-key (kbd "C-c n") 'flymake-goto-next-error)
        (local-set-key (kbd "C-c i") 'iedit-mode)
+
+       ;; Чтобы прыгать обратно на место откуда делался поиск тега, как в Lisp
+       ;; по умолчанию, это было забинжено на M-*, что неудобно нажимать
+       ;; А на M-, по умолчанию висело tags-loop-continue, что я никогда не исользую.
+       (local-set-key (kbd "M-,") 'pop-tag-mark)
 
        ;; To delete trailing whitespaces on save
        (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)
