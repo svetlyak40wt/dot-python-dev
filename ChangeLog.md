@@ -1,3 +1,8 @@
+## 0.7.0 (2018-03-22)
+
+* Now ElPy installed from MELPA, not from http://jorgenschaefer.github.io/packages/
+* Added M-, shortcut, to jump back to the place where M-. was called.
+
 ## 0.6.0 (2016-04-04)
 
 * Added snippet to make a Trepan debugger set_trace.
