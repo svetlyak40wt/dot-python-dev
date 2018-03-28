@@ -20,7 +20,8 @@
                        auto-complete
                        ;; подсказки неправильного синтаксиса и импортов
                        flymake-python-pyflakes
-                       flymake-cursor
+                       ;; этот плагин тормозил
+                       ;; flymake-cursor
                        ;; выделение окружающего контекста по C-c =
                        expand-region
                        ;; выделение строк, которые выбиваются за
@@ -35,7 +36,9 @@
        (local-set-key (kbd "C-c i") 'iedit-mode)
 
        ;; To delete trailing whitespaces on save
-       (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)
+       ;; This hook was commented out, because on file with 5000 lines,
+       ;; deletion takes about 5 seconds each time when I'm saving the file.
+       ;; (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)
   
        ;; подсвечиваем брекпоинты, чтобы не забыть их удалить
        ;; это включает hi-lock minor mode
