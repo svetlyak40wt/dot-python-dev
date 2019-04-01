@@ -66,7 +66,11 @@ test.test_settings:TestSettings.test_set_signature
   
        ;; подсвечиваем брекпоинты, чтобы не забыть их удалить
        ;; это включает hi-lock minor mode
-       (highlight-lines-matching-regexp "\.set_trace" "hi-blue")
+       
+       ;; TODO: Тут надо вместо hi-blue использовать face, иначе иногда
+       ;;       возникает ошибка:
+       ;;       emacs face-name: Wrong type argument: symbolp, "hi-blue"
+       ;; (highlight-lines-matching-regexp "\.set_trace" "hi-blue")
 
        ;; Turn on automatic syntax checker
        ;; https://github.com/purcell/flymake-python-pyflakes
