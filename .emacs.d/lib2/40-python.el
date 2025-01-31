@@ -20,3 +20,13 @@
 (use-package lsp-mode
   :hook (python-mode lsp)
   :commands lsp)
+
+
+(use-package pytest
+  :custom
+  ((pytest-project-root-files '("service.yaml" "setup.py" ".hg" ".git")))
+  :config
+  (keymap-set python-mode-map "C-t o" 'pytest-one)
+  (keymap-set python-mode-map "C-t a" 'pytest-again)
+  (keymap-set python-mode-map "C-t A" 'pytest-all)
+  (keymap-set python-mode-map "C-t m" 'pytest-module))
