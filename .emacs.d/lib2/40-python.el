@@ -1,3 +1,5 @@
+(defvar *40wt/python-mode-keys-remapped* t)
+
 (defun 40ants-remap-python-mode-keys ()
   ;; В python-mode С-с TAB является префиксом для таких команд:
   ;;
@@ -7,19 +9,33 @@
   ;; C-c TAB s       python-sort-imports
   ;;
   ;; И это мешает повесить автокомплит на привычный мне C-c TAB.
-  (keymap-set python-mode-map "C-c TAB a" nil)
-  (keymap-set python-mode-map "C-c TAB f" nil)
-  (keymap-set python-mode-map "C-c TAB r" nil)
-  (keymap-set python-mode-map "C-c TAB s" nil)
-  (keymap-set python-mode-map "C-c TAB" 'completion-at-point))
+  (unless *40wt/python-mode-keys-remapped*
+    (keymap-set python-mode-map "C-c TAB a" nil)
+    (keymap-set python-mode-map "C-c TAB f" nil)
+    (keymap-set python-mode-map "C-c TAB r" nil)
+    (keymap-set python-mode-map "C-c TAB s" nil)
+    
+    (keymap-set python-mode-map "C-c TAB" 'completion-at-point)
+
+    (setf *40wt/python-mode-keys-remapped* t)))
 
 
 (add-hook 'python-mode-hook #'40ants-remap-python-mode-keys)
 
 
 (use-package lsp-mode
-  :hook (python-mode lsp)
-  :commands lsp)
+  :ensure t
+  :hook python-mode python-ts-mode
+  :commands lsp
+  :custom
+  (lsp-pylsp-server-command (list "pylsp" "--verbose" "--log-file" "/tmp/pylsp.log"))
+  
+  (lsp-pylsp-plugins-ruff-line-length 120)
+  (lsp-pylsp-plugins-ruff-executable (string-trim
+                                      (shell-command-to-string
+                                       "/codenv/arcadia/ya tool ruff --print-path")))
+  (lsp-pylsp-plugins-flake8-enabled nil)
+  (lsp-pylsp-plugins-ruff-enabled t))
 
 
 (use-package flycheck
@@ -39,39 +55,18 @@
   :hook flycheck-mode)
 
 
-(defun 40wt/pytest-one (&optional arg)
-  (interactive "P")
-  (if arg
-      (pytest-pdb-one)
-    (pytest-one)))
-
-
-(use-package pytest
-  :custom
-  ((pytest-project-root-files '("service.yaml" "setup.py" ".hg" ".git")))
-  :config
-  (keymap-set python-mode-map "C-t o" '40wt/pytest-one)
-  (keymap-set python-mode-map "C-t a" 'pytest-again)
-  (keymap-set python-mode-map "C-t A" 'pytest-all)
-  (keymap-set python-mode-map "C-t m" 'pytest-module))
-
-
-(defun 40wt/pytest-again-with-sql-regen ()
-  ;; Changes a command like this
-  ;; cd '/codenv/arcadia/taxi/backend-py3/services/dmp-sched/' && /codenv/arcadia/taxi/backend-py3/runtests -x -s ''/codenv/arcadia/taxi/backend-py3/services/dmp-sched/test_dmp_sched/cron/test_job_manager.py::test_scheduling_attempt''
-
-  (if-let* ((last-command (gethash (pytest-get-temp-buffer-name) pytest-last-commands))
-            (command (replace-regexp-in-string "&&"
-                                               "&& /codenv/arcadia/ya tool tt gen -p services/dmp-sched --plugins sqlt postgres_queries &&"
-                                               last-command)))
-      (pytest-start-command command)
-    (error "Pytest has not run before")))
-
-
-;; https://github.com/emacsmirror/importmagic
-;; To make it work, do pip install importmagic epc
-(use-package importmagic
+(use-package python-pytest
   :ensure t
-  :hook python-mode
+  :after lsp-mode
   :config
-  (keymap-set importmagic-mode-map "C-c C-l" 'importmagic-fix-symbol-at-point))
+  (keymap-set lsp-command-map "t" 'python-pytest-dispatch))
+
+
+(use-package treesit-auto
+  :ensure t
+  :custom
+  (treesit-auto-install 'prompt)
+  (treesit-auto-langs '(python))
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
