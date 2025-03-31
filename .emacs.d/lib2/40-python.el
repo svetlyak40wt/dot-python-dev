@@ -40,7 +40,7 @@
 
 (use-package flycheck
   :ensure t
-  :init (global-flycheck-mode)
+  :hook python-mode python-ts-mode
   :config
   (keymap-set global-map "M-p" 'flycheck-previous-error)
   (keymap-set global-map "M-n" 'flycheck-next-error))
