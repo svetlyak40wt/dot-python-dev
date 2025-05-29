@@ -70,3 +70,13 @@
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
+
+
+(use-package hideshowvis
+  :ensure t)
+
+(use-package folding
+  :ensure t)
+
+;; (use-package ts-fold
+;;   :straight (ts-fold :type git :host github :repo "emacs-tree-sitter/ts-fold"))
