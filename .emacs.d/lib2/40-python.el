@@ -42,10 +42,11 @@
   :hook python-mode python-ts-mode
   :commands lsp
   :custom
-  ;; (lsp-pylsp-server-command (list "pylsp" "-vv" "--log-file" "/tmp/pylsp.log"))
-  
-  (lsp-pylsp-server-command (list "/home/art/python-lsp-server/.venv/bin/pylsp" "-vv" "--log-file" "/tmp/pylsp.log"))
-  ;; (lsp-pylsp-server-command (list "/usr/bin/python" "-m" "pylsp" "-vv" "--log-file" "/tmp/pylsp.log"))
+  ;; Для отладки pylsp установленного из пакета:
+  (lsp-pylsp-server-command (list "pylsp" "-vv" "--log-file" "/tmp/pylsp.log"))
+
+  ;; Для разработки pylsp:
+  ;; (lsp-pylsp-server-command (list "/home/art/python-lsp-server/.venv/bin/pylsp" "-vv" "--log-file" "/tmp/pylsp.log"))
   
   (lsp-pylsp-plugins-ruff-line-length 120)
   (lsp-pylsp-plugins-ruff-executable (string-trim
