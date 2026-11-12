@@ -70,7 +70,7 @@
 
 (use-package flycheck
   :ensure t
-  :init (global-flycheck-mode)
+  :hook python-mode python-ts-mode
   :config
   (keymap-set global-map "M-p" 'flycheck-previous-error)
   (keymap-set global-map "M-n" 'flycheck-next-error))
@@ -100,3 +100,13 @@
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
+
+
+(use-package hideshowvis
+  :ensure t)
+
+(use-package folding
+  :ensure t)
+
+;; (use-package ts-fold
+;;   :straight (ts-fold :type git :host github :repo "emacs-tree-sitter/ts-fold"))
